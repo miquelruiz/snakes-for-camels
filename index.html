@@ -118,13 +118,14 @@
 			</section>
 		</section>
 		<section>
-			<h2>What's really different?</h2>
-			<ul>
-				<li class="fragment">Philosophy: TIMTOWTDI vs. "import this"</li>
-			</ul>
-		</section>
-		<section>
-			<pre>&gt;&gt;&gt; import this
+			<section>
+				<h2>What's really different?</h2>
+				<ul>
+					<li class="fragment">Philosophy: TIMTOWTDI vs. "import this"</li>
+				</ul>
+			</section>
+			<section>
+				<pre>&gt;&gt;&gt; import this
 The Zen of Python, by Tim Peters
 
 Beautiful is better than ugly.
@@ -146,16 +147,74 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!</pre>
+			</section>
 		</section>
 		<section>
-			<h2>Cool stuff</h2>
-			<ul>
-				<li>list comprehensions (map, grep)</li>
-				<li>built in exceptions (Try::Tiny)</li>
-				<li>built in REPL (re.pl)</li>
-				<li>huge standard library (cpan)</li>
-				<li>generators (state variables)</li>
-			</ul>
+			<section>
+				<h2>Cool stuff</h2>
+				<ul>
+					<li>generators (state variables)</li>
+				</ul>
+				<pre style="width:45%;"><code>
+#!/usr/bin/env python
+
+def gen():
+    i = 0
+    while True:
+        yield str(i)
+        i = i + 1
+
+x = gen()
+for i in range(0, 10):
+    print(next(x))
+				</code></pre>
+				<pre style="width:45%;"><code>
+#!/usr/bin/env perl
+
+use 5.010;
+use strict;
+use warnings;
+
+sub gen {
+    state $i = 0;
+    return $i++;
+}
+
+say gen() for (0..9);
+				</code></pre>
+			</section>
+			<section>
+				<h2>Cool stuff</h2>
+				<ul>
+					<li>list comprehensions (map, grep)</li>
+				</ul>
+				<pre><code></code></pre>
+				<pre><code></code></pre>
+			</section>
+			<section>
+				<h2>Cool stuff</h2>
+				<ul>
+					<li>built in REPL (re.pl)</li>
+				</ul>
+				<pre><code></code></pre>
+				<pre><code></code></pre>
+			</section>
+			<section>
+				<h2>Cool stuff</h2>
+				<ul>
+					<li>huge standard library (cpan)</li>
+				</ul>
+				<pre><code></code></pre>
+				<pre><code></code></pre>
+			</section>
+			<section>
+				<h2>Cool stuff</h2>
+				<ul>
+					<li>built in exceptions (Try::Tiny)</li>
+				</ul>
+				<pre><code></code></pre>
+				<pre><code></code></pre>
+			</section>
 		</section>
 		<section>
 			<h2>Not-so-cool stuff</h2>
