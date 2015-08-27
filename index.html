@@ -191,6 +191,40 @@ Reuse via CPAN is one honking great idea -- let's do more of that!</pre>
 		</section>
 		<section>
 			<section>
+				<h2>Getting started</h2>
+			</section>
+			<section>
+				<h2>Install Python to play around</h2>
+				<p>virtualenv is a tool to to create isolated Python environments</p>
+				<pre><code data-trim>
+$ virtualenv my_python
+Using base prefix '/usr'
+New python executable in my_python/bin/python3
+Also creating executable in my_python/bin/python
+Installing setuptools, pip, wheel...done.
+
+$ source my_python/bin/activate
+(my_python)$ which python
+/home/mruiz/my_python/bin/python
+
+(my_python)$ deactivate
+$ which python
+/usr/bin/python
+				</code></pre>
+			</section>
+			<section>
+				<h2>Where is my CPAN?!?!</h2>
+				<p class="fragment">Fear not! PyPI to the rescue
+				<br/><a href="http://pypi.python.org">The Python Package Index</a>
+				<br/>The official third-party software repository for Python</p>
+			</section>
+			<section>
+				<h2>Let's install some shit</h2>
+				<p>pip vs. easy_install</p>
+			</section>
+		</section>
+		<section>
+			<section>
 				<h2>Cool stuff</h2>
 				<ul>
 					<li>generators (state variables / Coro)</li>
@@ -261,9 +295,6 @@ say gen() for (0..9);
 		</section>
 		<section>
 			<h2>Versioning shitshow</h2>
-		</section>
-		<section>
-			<h2>Ecosystem</h2>
 		</section>
 		</div>
 		</div>
