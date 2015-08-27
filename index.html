@@ -42,28 +42,6 @@
 			<h1>Snakes for Camels</h1>
 			<p>Python 101 for Perl programmers</p>
 		</section>
-		<section>
-			<section data-background="/img/python-name-only.png" data-background-size="80%">
-				<h2>What's</h2>
-				<ul>
-					<li class="fragment">Interpreted</li>
-					<li class="fragment">Scripting language</li>
-					<li class="fragment">General purpose</li>
-					<li class="fragment">Multi paradigm (imperative, functional, ...)</li>
-					<li class="fragment">Dynamically typed</li>
-				</ul>
-			</section>
-			<section>
-				<h2>Perl, anyone?</h2>
-				<ul>
-					<li>Interpreted</li>
-					<li>Scripting language</li>
-					<li>General purpose</li>
-					<li>Multi paradigm (imperative, functional, ...)</li>
-					<li>Dynamically typed</li>
-				</ul>
-			</section>
-		</section>
 		<section data-background="/img/python-name-only.png" data-background-size="80%">
 			<section>
 				<h2>Why?</h2>
@@ -73,7 +51,21 @@
 			</section>
 			<section>
 				<h2>Easy to read</h2>
-				<p>Example of shitty code</p>
+				<div class="fragment">
+					<pre style="width:100%;"><code>import collections
+class Solution:
+  def canFinish(self, n, prs):
+    m = collections.defaultdict(lambda: collections.defaultdict(set))
+    map(lambda pr: m[0][pr[0]].add(pr[1]) or (m[1][pr[1]].add(pr[0])), prs)
+    m[2][0].update(set(filter(lambda c: not m[0][c], xrange(n))))
+    while m[2][0]:
+      v = (lambda x: (m[2][1].add(x) or x))(m[2][0].pop())
+      m[2][0].update(filter(lambda o: m[0][o].discard(v) or 
+        (not m[0][o] and o not in m[2][1]), m[1][v]))
+    return len(m[2][1]) == n
+					</code></pre>
+					<p>Source: https://leetcode.com/discuss/34793/my-10-line-unreadable-python-solution</p>
+				</div>
 			</section>
 			<section>
 				<h2>Focus on productivity</h2>
@@ -86,14 +78,14 @@
 			<section>
 				<h2>Lots of platforms/implementations</h2>
 				<ul>
-					<li class="fragment">CPython (reference implementation)</li>
-					<li class="fragment">ActivePython (from ActiveState)</li>
-					<li class="fragment">IronPython (.NET and Mono platforms)</li>
-					<li class="fragment">Jython (JVM)</li>
-					<li class="fragment">Pypy (Python implemented in Python)</li>
+					<li class="fragment" data-fragment-index="1">CPython (reference implementation)</li>
+					<li class="fragment" data-fragment-index="2">ActivePython (from ActiveState)</li>
+					<li class="fragment" data-fragment-index="3">IronPython (.NET and Mono platforms)</li>
+					<li class="fragment" data-fragment-index="4">Jython (JVM)</li>
+					<li class="fragment" data-fragment-index="5">Pypy (Python implemented in RPython)</li>
 				</ul>
 				<br>
-				<img class="fragment" src="/img/rpython.jpg" />
+				<img class="fragment" src="/img/rpython.jpg" data-fragment-index="5" />
 			</section>
 			<section>
 				<h2>Lots of awesome projects</h2>
@@ -109,12 +101,35 @@
 					<li class="fragment">OpenERP</li>
 					<li class="fragment">YUM</li>
 					<li class="fragment">Portage</li>
+					<li class="fragment">And several more ...</li>
 				</ul>
 			</section>
 			<section>
 				<h2>Job oportunities!</h2>
 				<img src="/img/jobs-perl-vs-python.png">
 				<p>Source: http://www.indeed.com/jobtrends</p>
+			</section>
+		</section>
+		<section>
+			<section data-background="/img/python-name-only.png" data-background-size="80%" data-transition="none">
+				<h2>What's</h2>
+				<ul>
+					<li class="fragment">Interpreted</li>
+					<li class="fragment">Scripting language</li>
+					<li class="fragment">General purpose</li>
+					<li class="fragment">Multi paradigm (imperative, functional, ...)</li>
+					<li class="fragment">Dynamically typed</li>
+				</ul>
+			</section>
+			<section data-background="/img/perl-logo.png" data-background-size="50%" data-transition="none">
+				<h2>Perl, anyone?</h2>
+				<ul>
+					<li>Interpreted</li>
+					<li>Scripting language</li>
+					<li>General purpose</li>
+					<li>Multi paradigm (imperative, functional, ...)</li>
+					<li>Dynamically typed</li>
+				</ul>
 			</section>
 		</section>
 		<section>
@@ -148,12 +163,37 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!</pre>
 			</section>
+			<section>
+				<pre>use Acme::this;
+The Zen of Perl, by bellaire
+
+Beauty is subjective.
+Explicit is recommended, but not required.
+Simple is good, but complex can be good too.
+And although complicated is bad,
+Verbose and complicated is worse.
+Brief is better than long-winded.
+But readability counts.
+So use whitespace to enhance readability.
+Not because you're required to.
+Practicality always beats purity.
+In the face of ambiguity, do what I mean.
+There's more than one way to do it.
+Although that might not be obvious unless you're a Monk.
+At your discretion is better than not at all.
+Although your discretion should be used judiciously.
+Just because the code looks clean doesn't mean it is good.
+Just because the code looks messy doesn't mean it is bad.
+Reuse via CPAN is one honking great idea -- let's do more of that!</pre>
+				<p>Credit: bellaire</p>
+				<p>Source: http://www.perlmonks.org/?node_id=752029</p>
+			</section>
 		</section>
 		<section>
 			<section>
 				<h2>Cool stuff</h2>
 				<ul>
-					<li>generators (state variables)</li>
+					<li>generators (state variables / Coro)</li>
 				</ul>
 				<pre style="width:45%;"><code>
 #!/usr/bin/env python
