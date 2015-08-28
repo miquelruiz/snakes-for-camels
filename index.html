@@ -387,10 +387,65 @@ TypeError: Can't convert 'int' object to str implicitly
 				</code></pre>
 			</section>
 			<section>
-				<h2>Generators (state variables / Coro)</h2>
-				<pre style="width:45%; float: left;"><code data-trim>
-#!/usr/bin/env python
+				<h2>Classes</h2>
+				<pre style="width:45%; float: left; font-size: 40%;"><code data-trim>
+class MyObj(object):
 
+  def __init__(self, value):
+    if value > 5:
+      raise Exception('Too big')
+    self.value = value
+
+  def __add__(self, obj):
+    return MyObj(self.value + obj.value)
+
+  def __str__(self):
+    return 'odd' if self.value % 2 else 'even'
+
+  def double(self):
+    return self.value * 2
+
+a = MyObj(1)
+b = MyObj(2)
+c = a + b
+
+print(c.value)
+print(str(c))
+print(c.double())
+				</code></pre>
+				<pre style="width:51%; float: right; font-size: 40%;"><code data-trim>
+package MyObj;
+use Moo;
+
+use overload
+  '+'  =&gt; \&amp;_add,
+  '""' =&gt; \&amp;_str;
+
+has value =&gt; (
+  is =&gt; 'ro',
+  isa =&gt; sub { die "Too big" if shift &gt; 5; },
+  required =&gt; 1,
+);
+
+sub _add {
+  MyObj-&gt;new({value =&gt; shift-&gt;value + shift-&gt;value});
+}
+
+sub _str { shift-&gt;value % 2 ? 'odd' : 'even' }
+
+sub double { shift-&gt;value * 2 }
+
+1;
+				</code></pre>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Other Pythonic cool stuff</h2>
+			</section>
+			<section>
+				<h2>Generators (state variables / Coro)</h2>
+				<pre style="width: 45%; float: left;"><code data-trim>
 def gen():
     i = 0
     while True:
@@ -402,11 +457,7 @@ for i in range(0, 10):
     print(next(x))
 				</code></pre>
 				<pre style="width:45%; float: right;"><code data-trim>
-#!/usr/bin/env perl
-
 use 5.010;
-use strict;
-use warnings;
 
 sub gen {
     state $i = 0;
@@ -436,9 +487,6 @@ my @squared_even = map { $_ ** 2 } grep { $_ % 2 == 0 } @list;
 				</ul>
 			</section>
 		</section>
-		<!-- <section>
-			<h2>Not-so-cool stuff</h2>
-		</section> -->
 		<section>
 			<section>
 				<h2>Versioning shitshow</h2>
@@ -448,11 +496,32 @@ my @squared_even = map { $_ ** 2 } grep { $_ % 2 == 0 } @list;
 				<h2>Perl, anyone?</h2>
 				<p>Perl 5 vs. Perl 6</p>
 			</section>
+			<section>
+				<h2>Versioning shitshow</h2>
+				<ul>
+					<li>Python 3 released in December 2008</li>
+					<li class="fragment">Breaks backwards compatibility with Python 2.x</li>
+					<li class="fragment">No new features will go into 2.x branch</li>
+					<li class="fragment">3.x does not offer enough coolness to encourage migration</li>
+					<li class="fragment">Lots of projects still in 2.x</li>
+				</ul>
+			</section>
+			<section>
+				<h2>How to write portable code?</h2>
+				<p>Prepend this to your Python 2 modules</p>
+				<pre><code data-trim>
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+				</code></pre>
+			</section>
 		</section>
 		<section>
 			<h2>Further reading</h2>
 			<p>Python Enhancement Proposals: <a href="https://www.python.org/dev/peps/">https://www.python.org/dev/peps</a></p>
 			<p>Python Packaging Authority: <a href="https://www.pypa.io">https://www.pypa.io</a></p>
+			<p>Python 3 is killing Python: <a href="http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html">http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html</a></p>
 		</section>
 		</div>
 		</div>
