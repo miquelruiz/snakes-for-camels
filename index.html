@@ -296,7 +296,10 @@ $ which python
 		<section>
 			<section>
 				<h2>Python vs. Perl: Fight!</h2>
-				<pre class="fragment"><code data-trim>
+				<img src="/img/street-fighter.jpg" />
+			</section>
+			<section>
+				<pre><code data-trim>
 use strict;
 use warnings;
 
@@ -369,21 +372,31 @@ keys = dict.keys()
 				</code></pre>
 			</section>
 			<section>
-				<h2>Types II</h2>
-				<pre><code data-trim>
-&gt;&gt;&gt; x = [1, 2, 3]
+				<h2>Anonymous functions</h2>
+				<pre class="fragment fade-out" data-fragment-index="3" style="width:45%; float: left;"><code data-trim>
+anon = lambda x:
+  if x &gt; 5:
+    raise Exception("Too big")
+  else:
+    return x ** 2
 
-&gt;&gt;&gt; '.'.join(list)
-Traceback (most recent call last):
-File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-TypeError: sequence item 0: expected str instance, int found
-&gt;&gt;&gt; '.'.join([str(x) for x in list])
-'1.2.3'
-
-&gt;&gt;&gt; 'string' + 0;
-Traceback (most recent call last):
-File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-TypeError: Can't convert 'int' object to str implicitly
+print(anon(2))
+				</code></pre>
+				<pre style="width:45%; float: right;"><code data-trim>
+my $anon = sub {
+  my $x = shift;
+  if ($x &gt; 5) {
+    die "Too big";
+  } else {
+    return ** 2;
+  }
+};
+say $anon-&gt;(2);
+				</code></pre>
+				<img class="fragment current-visible" data-fragment-index="1" src="/img/forbidden.png" style="position: absolute; top: 50px; left: 0px; z-index: 10;"/>
+				<pre class="fragment" data-fragment-index="3" style="width:45%; float: left;"><code data-trim>
+anon = lambda x: x ** 2
+print(anon(2))
 				</code></pre>
 			</section>
 			<section>
@@ -504,6 +517,7 @@ my @squared_even = map { $_ ** 2 } grep { $_ % 2 == 0 } @list;
 					<li class="fragment">No new features will go into 2.x branch</li>
 					<li class="fragment">3.x does not offer enough coolness to encourage migration</li>
 					<li class="fragment">Lots of projects still in 2.x</li>
+					<li class="fragment">13779 PyPI ported packages out of 65396 (source: caniusepython3.com)</li>
 				</ul>
 			</section>
 			<section>
@@ -519,9 +533,13 @@ from __future__ import unicode_literals
 		</section>
 		<section>
 			<h2>Further reading</h2>
-			<p>Python Enhancement Proposals: <a href="https://www.python.org/dev/peps/">https://www.python.org/dev/peps</a></p>
-			<p>Python Packaging Authority: <a href="https://www.pypa.io">https://www.pypa.io</a></p>
-			<p>Python 3 is killing Python: <a href="http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html">http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html</a></p>
+			<ul style="font-size: 70%;">
+				<li>Python Official Docs: <a href="https://docs.python.org">https://docs.python.org</a></li>
+				<li>Python Package Index: <a href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a></li>
+				<li>Python Enhancement Proposals: <a href="https://www.python.org/dev/peps">https://www.python.org/dev/peps</a></li>
+				<li>Python Packaging Authority: <a href="https://www.pypa.io">https://www.pypa.io</a></li>
+				<li>Python 3 is killing Python: <a href="http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html">http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html</a></li>
+			</ul>
 		</section>
 		</div>
 		</div>
