@@ -41,13 +41,22 @@
 		<section>
 			<h1>Snakes for Camels</h1>
 			<p>Python 101 for Perl programmers</p>
+			<aside class="notes">
+				I started learning Python less than 1 year ago because I changed jobs.
+			</aside>
 		</section>
 		<section data-background="/img/python-name-only.png" data-background-size="80%">
 			<section>
 				<h2>Why?</h2>
+				<aside class="notes">
+					Why the Pythonists think we have to learn Python.
+				</aside>
 			</section>
 			<section>
 				<h2>Easy to learn</h2>
+				<aside class="notes">
+					I wouldn't say it's easier than i.e. Ruby
+				</aside>
 			</section>
 			<section>
 				<h2>Easy to read</h2>
@@ -66,12 +75,16 @@ class Solution:
 					</code></pre>
 					<p style="font-size:50%;">Source: https://leetcode.com/discuss/34793/my-10-line-unreadable-python-solution</p>
 				</div>
+				<aside class="notes">Yes, sure, whatever</aside>
 			</section>
 			<section>
 				<h2>Focus on productivity</h2>
+				<aside class="notes">
+					Besides Java and Brainfuck, do you know any other which doesn't?
+				</aside>
 			</section>
 		</section>
-		<section data-background="/img/python-name-only.png" data-background-size="80%">
+		<section>
 			<section>
 				<h2>The actual reasons</h2>
 			</section>
@@ -213,6 +226,14 @@ $ source my_python/bin/activate
 $ which python
 /usr/bin/python
 				</code></pre>
+				<aside class="notes">
+					It doesn't support downloading and compiling Pythons
+					It copies whatever Pythons you have installed to a new location
+					So now that we have our own Python environment, let's write
+					an application which uses, i.e. Redis.
+					Get the spec, open sockets, etc.
+					I can hear you all, waking up in the middle of the night, and screaming...
+				</aside>
 			</section>
 			<section>
 				<h2>Where is my CPAN?!?!</h2>
@@ -291,6 +312,10 @@ $ which python
 					</tbody>
 				</table>
 				<p class="fragment" data-fragment-index="2" style="font-size:50%;">Source: https://packaging.python.org/en/latest/pip_easy_install.html</p>
+				<aside class="notes">
+					Now that we are motivated, and have our own Python env, let's
+					dive into some details.
+				</aside>
 			</section>
 		</section>
 		<section>
@@ -307,6 +332,9 @@ use feature 'say';
 use feature 'signatures';
 no warnings 'experimental::signatures';
 				</code></pre>
+				<aside class="notes">
+					Since I'd like Perl to win, I'm going to cheat a bit.
+				</aside>
 			</section>
 			<section>
 				<h2>Syntax overview</h2>
@@ -333,6 +361,14 @@ sub sum($x, $y) {
 
 say sum(2, 3);
 				</code></pre>
+				<aside class="notes">
+					no parenthesis in the condition
+					no curly braces
+					line breaks to delimit statements
+					compulsory indentation to delimit blocks
+					subroutine signatures
+					no ++ operator
+				</aside>
 			</section>
 			<section>
 				<h2>Types</h2>
