@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Snakes For Camels - Python 101 for Perl programmers</title>
+
+		<meta name="description" content="Python 101 for Perl programmers">
+		<meta name="author" content="Miquel Ruiz">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+		<div class="slides">
+		<section>
+			<h1>Snakes for Camels</h1>
+			<p>Python 101 for Perl programmers</p>
+			<aside class="notes">
+				I started learning Python less than 1 year ago because I changed jobs.
+			</aside>
+		</section>
+		<section data-background="img/python-name-only.png" data-background-size="80%">
+			<section>
+				<h2>Why?</h2>
+				<aside class="notes">
+					Why the Pythonists think we have to learn Python.
+				</aside>
+			</section>
+			<section>
+				<h2>Easy to learn</h2>
+				<aside class="notes">
+					I wouldn't say it's easier than i.e. Ruby
+				</aside>
+			</section>
+			<section>
+				<h2>Easy to read</h2>
+				<div class="fragment">
+					<pre style="width:100%;"><code>import collections
+class Solution:
+  def canFinish(self, n, prs):
+    m = collections.defaultdict(lambda: collections.defaultdict(set))
+    map(lambda pr: m[0][pr[0]].add(pr[1]) or (m[1][pr[1]].add(pr[0])), prs)
+    m[2][0].update(set(filter(lambda c: not m[0][c], xrange(n))))
+    while m[2][0]:
+      v = (lambda x: (m[2][1].add(x) or x))(m[2][0].pop())
+      m[2][0].update(filter(lambda o: m[0][o].discard(v) or 
+        (not m[0][o] and o not in m[2][1]), m[1][v]))
+    return len(m[2][1]) == n
+					</code></pre>
+					<p style="font-size:50%;">Source: https://leetcode.com/discuss/34793/my-10-line-unreadable-python-solution</p>
+				</div>
+				<aside class="notes">Yes, sure, whatever</aside>
+			</section>
+			<section>
+				<h2>Focus on productivity</h2>
+				<aside class="notes">
+					Besides Java and Brainfuck, do you know any other which doesn't?
+				</aside>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>The actual reasons</h2>
+			</section>
+			<section>
+				<h2>Lots of platforms/implementations</h2>
+				<ul>
+					<li class="fragment" data-fragment-index="1">CPython (reference implementation)</li>
+					<li class="fragment" data-fragment-index="2">ActivePython (from ActiveState)</li>
+					<li class="fragment" data-fragment-index="3">IronPython (.NET and Mono platforms)</li>
+					<li class="fragment" data-fragment-index="4">Jython (JVM)</li>
+					<li class="fragment" data-fragment-index="5">Pypy (Python implemented in RPython)</li>
+				</ul>
+				<br>
+				<img class="fragment" src="img/rpython.jpg" data-fragment-index="5" />
+			</section>
+			<section>
+				<h2>Lots of awesome projects</h2>
+				<ul>
+					<li class="fragment">BitTorrent</li>
+					<li class="fragment">Ansible</li>
+					<li class="fragment">Calibre</li>
+					<li class="fragment">Deluge</li>
+					<li class="fragment">Mercurial</li>
+					<li class="fragment">Bazaar</li>
+					<li class="fragment">Trac</li>
+					<li class="fragment">GNU Mailman</li>
+					<li class="fragment">OpenERP</li>
+					<li class="fragment">YUM</li>
+					<li class="fragment">Portage</li>
+					<li class="fragment">And several more ...</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Job oportunities!</h2>
+				<img src="img/jobs-perl-vs-python.png">
+				<p style="font-size:50%;">Source: http://www.indeed.com/jobtrends</p>
+			</section>
+		</section>
+		<section>
+			<section data-background="img/python-name-only.png" data-background-size="80%" data-transition="none">
+				<h2>What is it?</h2>
+				<ul>
+					<li class="fragment">Scripting language</li>
+					<li class="fragment">Interpreted</li>
+					<li class="fragment">General purpose</li>
+					<li class="fragment">Multi paradigm (imperative, functional, ...)</li>
+					<li class="fragment">Dynamically typed</li>
+				</ul>
+			</section>
+			<section data-background="img/perl-logo.png" data-background-size="50%" data-transition="none">
+				<h2>Perl, anyone?</h2>
+				<ul>
+					<li>Scripting language</li>
+					<li>Interpreted</li>
+					<li>General purpose</li>
+					<li>Multi paradigm (imperative, functional, ...)</li>
+					<li>Dynamically typed</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>What's really different?</h2>
+				<ul>
+					<li class="fragment">Syntax (obviously)</li>
+					<li class="fragment">Strongly typed</li>
+					<li class="fragment">Philosophy: TIMTOWTDI vs. "import this"</li>
+				</ul>
+			</section>
+			<section>
+				<pre>&gt;&gt;&gt; import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!</pre>
+			</section>
+			<section>
+				<pre>use Acme::this;
+The Zen of Perl, by bellaire
+
+Beauty is subjective.
+Explicit is recommended, but not required.
+Simple is good, but complex can be good too.
+And although complicated is bad,
+Verbose and complicated is worse.
+Brief is better than long-winded.
+But readability counts.
+So use whitespace to enhance readability.
+Not because you're required to.
+Practicality always beats purity.
+In the face of ambiguity, do what I mean.
+There's more than one way to do it.
+Although that might not be obvious unless you're a Monk.
+At your discretion is better than not at all.
+Although your discretion should be used judiciously.
+Just because the code looks clean doesn't mean it is good.
+Just because the code looks messy doesn't mean it is bad.
+Reuse via CPAN is one honking great idea -- let's do more of that!</pre>
+				<p style="font-size:50%;">Credit: bellaire
+				<br/>Source: http://www.perlmonks.org/?node_id=752029</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Getting started</h2>
+			</section>
+			<section>
+				<h2>Install Python to play around</h2>
+				<p>virtualenv is a tool to to create isolated Python environments</p>
+				<pre><code data-trim>
+$ virtualenv my_python
+Using base prefix '/usr'
+New python executable in my_python/bin/python3
+Also creating executable in my_python/bin/python
+Installing setuptools, pip, wheel...done.
+
+$ source my_python/bin/activate
+(my_python)$ which python
+/home/mruiz/my_python/bin/python
+
+(my_python)$ deactivate
+$ which python
+/usr/bin/python
+				</code></pre>
+				<aside class="notes">
+					It doesn't support downloading and compiling Pythons
+					It copies whatever Pythons you have installed to a new location
+					So now that we have our own Python environment, let's write
+					an application which uses, i.e. Redis.
+					Get the spec, open sockets, etc.
+					I can hear you all, waking up in the middle of the night, and screaming...
+				</aside>
+			</section>
+			<section>
+				<h2>Where is my CPAN?!?!</h2>
+				<p class="fragment" data-fragment-index="1">Fear not! PyPI to the rescue
+				<br/><a href="http://pypi.python.org">The Python Package Index</a>
+				<br/>The official third-party software repository for Python</p>
+				<p class="fragment" data-fragment-index="1" style="font-size:50%;">
+					Not to be confused with PyPy (the implementation and JIT compiler)</p>
+			</section>
+			<section>
+				<h2>Let's install some shit</h2>
+				<p>pip vs. easy_install</p>
+				<p class="fragment current-visible" data-fragment-index="1">
+				pip ➔ cpanm<br/>
+				easy_install ➔ cpan
+				</p>
+				<table class="fragment" data-fragment-index="2" style="font-size:60%;">
+					<thead>
+						<tr>
+							<th></th>
+							<th>pip (2008)</th>
+							<th>easy_install (2004)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Install from Wheels</td>
+							<td>Yes</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>Uninstall Packages</td>
+							<td>Yes (pip uninstall)</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>Dependency Overrides</td>
+							<td>Yes</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>List Installed Packages</td>
+							<td>Yes (pip list)</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>PEP438 Support</td>
+							<td>Yes</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>Installation format</td>
+							<td>'Flat' packages</td>
+							<td>Encapsulated Egg</td>
+						</tr>
+						<tr>
+							<td>sys.path modification</td>
+							<td>No</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td>Install from Eggs</td>
+							<td>No</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td>pylauncher support</td>
+							<td>No</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td>Multi-version Installs</td>
+							<td>No</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="fragment" data-fragment-index="2" style="font-size:50%;">Source: https://packaging.python.org/en/latest/pip_easy_install.html</p>
+				<aside class="notes">
+					Now that we are motivated, and have our own Python env, let's
+					dive into some details.
+				</aside>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Python vs. Perl: Fight!</h2>
+				<img src="img/street-fighter.jpg" />
+			</section>
+			<section>
+				<pre><code data-trim>
+use strict;
+use warnings;
+
+use feature 'say';
+use feature 'signatures';
+no warnings 'experimental::signatures';
+				</code></pre>
+				<aside class="notes">
+					Since I'd like Perl to win, I'm going to cheat a bit.
+				</aside>
+			</section>
+			<section>
+				<h2>Syntax overview</h2>
+				<pre style="width:45%; float: left;"><code data-trim>
+x = 0
+while x &lt; 10:
+  print(x)
+  x += 1
+
+def sum(x, y):
+  return x + y
+
+print(sum(2, 3))
+				</code></pre>
+				<pre style="width:52%; float: right;"><code data-trim>
+my $x = 0;
+while ($x &lt; 10) {
+  say $x++;
+}
+
+sub sum($x, $y) {
+  return $x + $y;
+}
+
+say sum(2, 3);
+				</code></pre>
+				<aside class="notes">
+					no parenthesis in the condition
+					no curly braces
+					line breaks to delimit statements
+					compulsory indentation to delimit blocks
+					subroutine signatures
+					no ++ operator
+				</aside>
+			</section>
+			<section>
+				<h2>Types</h2>
+				<div style="width: 45%; float: left;">
+					<p>Python</p>
+					<ul>
+					<li>int</li>
+						<li>float</li>
+						<li>str</li>
+						<li>byte</li>
+						<li>dict</li>
+						<li>list</li>
+						<li>set</li>
+						<li>tuple</li>
+					</ul>
+				</div>
+				<div style="width: 45%; float: right;">
+					<p>Perl</p>
+					<ul>
+						<li>scalar</li>
+						<li>array</li>
+						<li>hash</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h2>Everything's an object</h2>
+				<pre><code data-trim>
+list = ["Objects", "all", "over", "the", "place"]
+print('.'.join(list))
+list.append('xxx')
+
+dict = {'key1': 'value1', 'key2': 'value2'}
+keys = dict.keys()
+
+(1.3).hex()
+				</code></pre>
+			</section>
+			<section>
+				<h2>Anonymous functions</h2>
+				<pre class="fragment fade-out" data-fragment-index="3" style="width:45%; float: left;"><code data-trim>
+anon = lambda x:
+  if x &gt; 5:
+    raise Exception("Too big")
+  else:
+    return x ** 2
+
+print(anon(2))
+				</code></pre>
+				<pre style="width:45%; float: right;"><code data-trim>
+my $anon = sub {
+  my $x = shift;
+  if ($x &gt; 5) {
+    die "Too big";
+  } else {
+    return ** 2;
+  }
+};
+say $anon-&gt;(2);
+				</code></pre>
+				<img class="fragment current-visible" data-fragment-index="1" src="img/forbidden.png" style="position: absolute; top: 50px; left: 0px; z-index: 10;"/>
+				<pre class="fragment" data-fragment-index="3" style="width:45%; float: left;"><code data-trim>
+anon = lambda x: x ** 2
+print(anon(2))
+				</code></pre>
+			</section>
+			<section>
+				<h2>Classes</h2>
+				<pre style="width:45%; float: left; font-size: 40%;"><code data-trim>
+class MyObj(object):
+
+  def __init__(self, value):
+    if value > 5:
+      raise Exception('Too big')
+    self.value = value
+
+  def __add__(self, obj):
+    return MyObj(self.value + obj.value)
+
+  def __str__(self):
+    return 'odd' if self.value % 2 else 'even'
+
+  def double(self):
+    return self.value * 2
+
+a = MyObj(1)
+b = MyObj(2)
+c = a + b
+
+print(c.value)
+print(str(c))
+print(c.double())
+				</code></pre>
+				<pre style="width:51%; float: right; font-size: 40%;"><code data-trim>
+package MyObj;
+use Moo;
+
+use overload
+  '+'  =&gt; \&amp;_add,
+  '""' =&gt; \&amp;_str;
+
+has value =&gt; (
+  is =&gt; 'ro',
+  isa =&gt; sub { die "Too big" if shift &gt; 5; },
+  required =&gt; 1,
+);
+
+sub _add {
+  MyObj-&gt;new({value =&gt; shift-&gt;value + shift-&gt;value});
+}
+
+sub _str { shift-&gt;value % 2 ? 'odd' : 'even' }
+
+sub double { shift-&gt;value * 2 }
+
+1;
+				</code></pre>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Other Pythonic cool stuff</h2>
+			</section>
+			<section>
+				<h2>Generators (state variables / Coro)</h2>
+				<pre style="width: 45%; float: left;"><code data-trim>
+def gen():
+    i = 0
+    while True:
+        yield str(i)
+        i = i + 1
+
+x = gen()
+for i in range(0, 10):
+    print(next(x))
+				</code></pre>
+				<pre style="width:45%; float: right;"><code data-trim>
+use 5.010;
+
+sub gen {
+    state $i = 0;
+    return $i++;
+}
+
+say gen() for (0..9);
+				</code></pre>
+			</section>
+			<section>
+				<h2>List comprehensions (map, grep)</h2>
+				<pre><code data-trim>
+list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+squared_even = [x ** 2 for x in list if x % 2 == 0]
+				</code></pre>
+				<pre><code data-trim>
+my @list = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+my @squared_even = map { $_ ** 2 } grep { $_ % 2 == 0 } @list;
+				</code></pre>
+			</section>
+			<section>
+				<h2>More stuff</h2>
+				<ul>
+					<li>built in exceptions (Try::Tiny)</li>
+					<li>built in REPL (re.pl)</li>
+					<li>huge standard library (cpan)</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Versioning shitshow</h2>
+				<p>Python 2 vs. Python 3</p>
+			</section>
+			<section data-background="img/perl-logo.png" data-background-size="50%" data-transition="none">
+				<h2>Perl, anyone?</h2>
+				<p>Perl 5 vs. Perl 6</p>
+			</section>
+			<section>
+				<h2>Versioning shitshow</h2>
+				<ul>
+					<li>Python 3 released in December 2008</li>
+					<li class="fragment">Breaks backwards compatibility with Python 2.x</li>
+					<li class="fragment">No new features will go into 2.x branch</li>
+					<li class="fragment">3.x does not offer enough coolness to encourage migration</li>
+					<li class="fragment">Lots of projects still in 2.x</li>
+					<li class="fragment">13779 PyPI ported packages out of 65396 (source: caniusepython3.com)</li>
+				</ul>
+			</section>
+			<section>
+				<h2>How to write portable code?</h2>
+				<p>Prepend this to your Python 2 modules</p>
+				<pre><code data-trim>
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+				</code></pre>
+			</section>
+		</section>
+		<section>
+			<h2>Further reading</h2>
+			<ul style="font-size: 70%;">
+				<li>Python Official Docs: <a href="https://docs.python.org">https://docs.python.org</a></li>
+				<li>Python Package Index: <a href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a></li>
+				<li>Python Enhancement Proposals: <a href="https://www.python.org/dev/peps">https://www.python.org/dev/peps</a></li>
+				<li>Python Packaging Authority: <a href="https://www.pypa.io">https://www.pypa.io</a></li>
+				<li>Python 3 is killing Python: <a href="http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html">http://blog.thezerobit.com/2014/05/25/python-3-is-killing-python.html</a></li>
+			</ul>
+		</section>
+		</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
